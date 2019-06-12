@@ -7,8 +7,9 @@ class UsersController < ApplicationController
   post '/signup' do
     if entered_username? && entered_email? && entered_password?
       @user = User.create(username: params["username"], email: params["email"], password: params["password"])
+    else
+      redirect '/signup'
     end
-    binding.pry
   end
 
 
