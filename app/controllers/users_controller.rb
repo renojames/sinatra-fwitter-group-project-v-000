@@ -4,9 +4,15 @@ class UsersController < ApplicationController
     erb :"/users/create_user"
   end
 
-  post '/users' do
+  post '/signup' do
+    if entered_username? && entered_email? && entered_password?
+      @user = User.create(username: params["username"], email: params["email"], password: params["password"])
+    end
     binding.pry
   end
+
+
+private
 
 def entered_username?
   if !!params["username"] && params["username"] != ""
