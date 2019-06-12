@@ -4,4 +4,8 @@ class UsersController < ApplicationController
     erb :"/users/create_user"
   end
 
+  post '/users' do
+    binding.pry
+  end
+
 end
