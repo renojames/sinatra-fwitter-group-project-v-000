@@ -4,7 +4,7 @@ class UsersController < ApplicationController
     if !Helpers.is_logged_in?(session)
       erb :"/users/create_user"
     else
-      redirect '/tweets/index'
+      redirect '/tweets'
     end
   end
 
@@ -22,10 +22,13 @@ class UsersController < ApplicationController
     if !Helpers.is_logged_in?(session)
       erb :"/users/login"
     else
-      erb :"/tweets/index"
+      erb :'/tweets'
     end
   end
 
+  post '/login' do
+    user = User.find_by(username: params["username"])
+  end
 
 private
 
