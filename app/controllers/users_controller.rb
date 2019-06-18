@@ -39,13 +39,18 @@ class UsersController < ApplicationController
   end
 
 
-get '/logout' do
-  erb :"/users/logout"
-end
+  get '/logout' do
+    if Helpers.is_logged_in?(session)
+      erb :"/users/logout"
+    else
+      redirect '/login'
+    end
+  end
 
-post '/logout' do
-  session.clear
-end
+  post '/logout' do
+    session.clear
+    redirect '/login'
+  end
 
 
 private
