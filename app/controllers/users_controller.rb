@@ -12,7 +12,7 @@ class UsersController < ApplicationController
     if entered_username? && entered_email? && entered_password?
       @user = User.create(username: params["username"], email: params["email"], password: params["password"])
       session[:user_id] = @user.id
-      redirect '/tweets/index'
+      redirect '/tweets'
     else
       redirect '/signup'
     end
@@ -22,13 +22,31 @@ class UsersController < ApplicationController
     if !Helpers.is_logged_in?(session)
       erb :"/users/login"
     else
-      erb :'/tweets'
+      redirect '/tweets'
     end
   end
 
   post '/login' do
     user = User.find_by(username: params["username"])
+
+    if user && user.authenticate(params["password"])
+      session[:user_id] = user.id
+      redirect "/tweets"
+    else
+      redirect "/login"
+    end
+
   end
+
+
+get '/logout' do
+  erb :"/users/logout"
+end
+
+post '/logout' do
+  session.clear
+end
+
 
 private
 
