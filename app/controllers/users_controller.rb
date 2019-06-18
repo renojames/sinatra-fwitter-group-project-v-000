@@ -1,7 +1,11 @@
 class UsersController < ApplicationController
 
   get '/signup' do
-    erb :"/users/create_user"
+    if !Helpers.is_logged_in?(session)
+      erb :"/users/create_user"
+    else
+      redirect '/tweets/index'
+    end
   end
 
   post '/signup' do
