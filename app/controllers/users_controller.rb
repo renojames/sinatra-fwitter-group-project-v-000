@@ -7,8 +7,18 @@ class UsersController < ApplicationController
   post '/signup' do
     if entered_username? && entered_email? && entered_password?
       @user = User.create(username: params["username"], email: params["email"], password: params["password"])
+      session[:user_id] = @user.id
+      redirect '/tweets/index'
     else
       redirect '/signup'
+    end
+  end
+
+  get '/login' do
+    if !Helpers.is_logged_in?(session)
+      erb :"/users/login"
+    else
+      erb :"/tweets/index"
     end
   end
 
