@@ -1,0 +1,18 @@
+
+<h3><%= @tweet.user.username %>'s Tweet:</h3>
+
+<p><%= @tweet.content %></p>
+
+<% if @tweet.user == Helpers.current_user(session) %>
+  <form id="Delete Tweet" action="/tweets" method="post">
+    <input type="invisible" id="invisible" name="_method" value="delete">
+    <input type="submit" name="Delete Tweet" value="Delete Tweet">
+  </form>
+<% end %>
+
+<% if @tweet.user == Helpers.current_user(session) %>
+  <form id="Edit Tweet" action="/tweets" method="post">
+    <input type="invisible" id="invisible" name="_method" value="patch">
+    <input type="submit" name="Edit Tweet" value="Edit Tweet">
+  </form>
+<% end %>
