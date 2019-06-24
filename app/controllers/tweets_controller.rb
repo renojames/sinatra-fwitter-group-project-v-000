@@ -54,7 +54,7 @@ class TweetsController < ApplicationController
       erb :"/tweets/show_tweet"
     else
       @tweet = Tweet.find(params[:id])
-      redirect "/tweets/show_tweet"
+      redirect "/tweets/#{@tweet.id}/edit"
     end
   end
 
