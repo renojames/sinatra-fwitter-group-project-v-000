@@ -6,7 +6,7 @@
 <h3>New Content:</h3>
 
 <form action="/tweets/<%= @tweet.id %>" method="post">
-  <input type="invisible" id="invisible" name="_method" value="patch">
+  <input type="hidden" id="hidden" name="_method" value="patch">
   <input type="text" name="content">
   <input type="submit" value="Submit">
 </form>
