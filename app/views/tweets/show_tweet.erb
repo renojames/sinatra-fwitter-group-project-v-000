@@ -11,8 +11,7 @@
 <% end %>
 
 <% if @tweet.user == Helpers.current_user(session) %>
-  <form id="Edit Tweet" action="/tweets" method="post">
-    <input type="invisible" id="invisible" name="_method" value="patch">
+  <form id="Edit Tweet" action="/tweets/edit" method="get">
     <input type="submit" name="Edit Tweet" value="Edit Tweet">
   </form>
 <% end %>
