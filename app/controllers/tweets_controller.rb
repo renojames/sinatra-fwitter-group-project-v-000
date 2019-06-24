@@ -47,7 +47,15 @@ class TweetsController < ApplicationController
   end
 
   patch '/tweets/:id' do
-    binding.pry
+    if !!params["content"] && params["content"] != ""
+      @tweet = Tweet.find(params[:id])
+      @tweet.content = params["content"]
+      @tweet.save
+      erb :"/tweets/show_tweet"
+    else
+      @tweet = Tweet.find(params[:id])
+      redirect "/tweets/show_tweet"
+    end
   end
 
 
