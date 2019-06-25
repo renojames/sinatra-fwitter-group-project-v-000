@@ -5,6 +5,7 @@ class UsersController < ApplicationController
       erb :"/users/create_user"
     else
       redirect '/tweets'
+      binding.pry
     end
   end
 
