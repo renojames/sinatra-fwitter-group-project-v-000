@@ -7,8 +7,11 @@
   <body>
     <h3>Welcome, <%= @user.username %></h3>
 
+    <h3>All Tweets:</h3>
+
     <% @tweets.each do |tweet| %>
 
+      <p><%= tweet.user.username %>'s Tweet:</p>
       <p><%= tweet.content %></p>
 
       <p> ********************* </p>

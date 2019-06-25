@@ -23,6 +23,7 @@ class TweetsController < ApplicationController
       @tweet = Tweet.new(content: params["content"])
       @tweet.user = Helpers.current_user(session)
       @tweet.save
+      redirect "/tweets/#{@tweet.id}"
     else
       redirect "/tweets/new"
     end
